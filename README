@@ -1,0 +1,69 @@
+IO::Splice - pass data between two IO handles
+=============================================
+
+This Perl module takes two sockets and biderectional forwards data
+between them. 
+
+
+Installation
+-------------
+
+To install this module, run the following commands:
+
+	perl Makefile.PL
+	make
+	make test
+	make install
+
+
+Examples
+--------
+
+The examples/ directroy contains two simple examples:
+
+  - splice.pl just passes data between STDIN and STDOUT
+  - socks4.pl is a very simple SOCKSv4 implementation
+
+
+Whishlist
+---------
+
+This is a naive pure perl soultuion for passing data between sockets. This
+works well for low traffic connection. When the traffic increases the overhead
+of Perl becomes quite noticeable. On the other hand it handles everything
+looking sufficiently like a IO::Handle object.
+
+A solution implemented as a XS module using readv/writev and iovec structures
+for buffers would probably perform better. On Linux it might even be possible
+to keep all data in kernel space by using the Linux only splice() system call.
+
+For more information about my sishes and plans, see
+http://peter.makholm.net/2011/10/17/splicing-two-sockets-in-perl-request-for-help/
+
+
+Known issues
+------------
+
+Closing sockets doesn't quite work yet
+
+
+Support and Documentation
+-------------------------
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc IO::Splice
+
+
+Copyright and License
+---------------------
+
+Copyright (C) 2011 Peter Makholm
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
